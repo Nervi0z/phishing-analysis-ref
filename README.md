@@ -1,274 +1,202 @@
+# phishing-analysis-ref
 
-<p align="center">
-  <img src="assets/nervi0zz0.png" alt="Nerviozzo Blue Team Cybersecurity Logo" width="350"/>
-</p>
+A curated list of tools, platforms, and resources for detecting, analyzing, and investigating phishing.
 
----
-# 🎣🛡️ Phishing Analysis Hub 🛡️🎣
+Covers threat intelligence feeds, URL/file scanners, email analysis, sandboxes, simulation frameworks, and OSINT utilities. Maintained as a living reference for SOC analysts, incident responders, and security researchers.
 
-
-
-[![Awesome](https://awesome.re/badge.svg)](https://awesome.re) [![GitHub contributors](https://img.shields.io/github/contributors/Nervi0zz0/ultimate-phishing-toolbox)](https://github.com/Nervi0zz0/ultimate-phishing-toolbox/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/Nervi0zz0/ultimate-phishing-toolbox)](https://github.com/Nervi0zz0/ultimate-phishing-toolbox/commits/main) [![GitHub stars](https://img.shields.io/github/stars/Nervi0zz0/ultimate-phishing-toolbox?style=social)](https://github.com/Nervi0zz0/ultimate-phishing-toolbox/stargazers)
-
-**Bienvenido a la colección definitiva de herramientas, plataformas y recursos para detectar, analizar y combatir el phishing en todas sus formas.**
-
-El phishing sigue siendo una de las amenazas cibernéticas más persistentes y dañinas. Este repositorio tiene como objetivo ser una **guía viva y colaborativa** para profesionales de ciberseguridad, analistas SOC, investigadores, estudiantes y cualquier persona interesada en comprender y neutralizar estas amenazas.
-
-> **Nota:** Algunas herramientas, especialmente las de frameworks de ataque, deben usarse **exclusivamente** en entornos controlados, con autorización explícita y con fines éticos (pentesting, formación, investigación). El uso indebido es ilegal y no ético.
+> Some tools in the offensive/simulation section are intended for authorized testing only. Using them against systems you don't own or without explicit permission is illegal.
 
 ---
 
-## 📖 Glosario Rápido
+## Contents
 
-Para entender mejor las descripciones:
-
-* **IOC:** Indicator of Compromise (Indicador de Compromiso - ej. URL, hash de archivo, IP).
-* **Sandbox:** Entorno aislado para ejecutar software sospechoso de forma segura.
-* **MITM:** Man-in-the-Middle (Ataque de intermediario).
-* **OSINT:** Open Source Intelligence (Inteligencia de Fuentes Abiertas).
-* **FOSS:** Free and Open Source Software (Software Libre y de Código Abierto).
-* **API:** Application Programming Interface (Interfaz para que programas interactúen).
-* **Gateway:** Punto de control que filtra el tráfico (en este caso, email).
+- [Threat Intelligence & Data Sources](#threat-intelligence--data-sources)
+- [Analysis Tools](#analysis-tools)
+- [Prevention & Detection](#prevention--detection)
+- [Simulation & Awareness Training](#simulation--awareness-training)
+- [Supporting Tools](#supporting-tools)
+- [Learning Resources](#learning-resources)
+- [Contributing](#contributing)
 
 ---
 
-## 🗺️ Índice Detallado
+## Glossary
 
-* [I. 🧠 Inteligencia de Amenazas y Fuentes de Datos](#i--inteligencia-de-amenazas-y-fuentes-de-datos)
-    * [Feeds y Bases de Datos de Phishing](#feeds-y-bases-de-datos-de-phishing)
-    * [Reputación de IP/Dominios](#reputación-de-ipdominios)
-* [II. 🔬 Herramientas de Análisis Directo](#ii--herramientas-de-análisis-directo)
-    * [Escáneres Online de URL/Archivos](#escáneres-online-de-urlarchivos)
-    * [Análisis de Email (Cabeceras, Contenido, Adjuntos)](#análisis-de-email-cabeceras-contenido-adjuntos)
-    * [Entornos Sandbox (Online y Auto-alojados)](#entornos-sandbox-online-y-auto-alojados)
-* [III. 🛡️ Sistemas de Prevención y Detección](#iii--sistemas-de-prevención-y-detección)
-    * [Gateways y Servicios de Seguridad de Email (Enfoque Comercial)](#gateways-y-servicios-de-seguridad-de-email-enfoque-comercial)
-    * [Protección Integrada en Navegador](#protección-integrada-en-navegador)
-* [IV. 🎓 Simulación, Formación y Seguridad Ofensiva](#iv--simulación-formación-y-seguridad-ofensiva)
-    * [Plataformas de Simulación y Concienciación](#plataformas-de-simulación-y-concienciación)
-    * [Frameworks para Campañas de Phishing Ético](#frameworks-para-campañas-de-phishing-ético-¡usar-con-responsabilidad)
-* [V. 🛠️ Herramientas y Frameworks de Apoyo](#v--herramientas-y-frameworks-de-apoyo)
-    * [Herramientas OSINT para Contexto de Phishing](#herramientas-osint-para-contexto-de-phishing)
-    * [Frameworks Generales de Seguridad](#frameworks-generales-de-seguridad)
-* [VI. 📚 Aprendizaje y Recursos Adicionales](#vi--aprendizaje-y-recursos-adicionales)
-    * [Ejemplos de Flujos de Trabajo (Ideas)](#ejemplos-de-flujos-de-trabajo-ideas)
-    * [Lecturas Recomendadas y Artículos](#lecturas-recomendadas-y-artículos)
-    * [Listas "Awesome" Relacionadas](#listas-awesome-relacionadas)
-* [VII. 🤝 Comunidad](#vii--comunidad)
-    * [Guía de Contribución](#guía-de-contribución)
-    * [Código de Conducta](#código-de-conducta)
-    * [Licencia](#licencia)
+| Term | Meaning |
+|------|---------|
+| IOC | Indicator of Compromise (URL, file hash, IP, etc.) |
+| Sandbox | Isolated environment for safely executing suspicious files or URLs |
+| MITM | Man-in-the-Middle attack |
+| OSINT | Open Source Intelligence |
+| FOSS | Free and Open Source Software |
+| Gateway | A filtering control point, in this context for email traffic |
 
 ---
 
-## I. 🧠 Inteligencia de Amenazas y Fuentes de Datos
+## Threat Intelligence & Data Sources
 
-Fuentes esenciales para obtener información actualizada sobre amenazas activas.
+### Phishing Feeds & Databases
 
-### Feeds y Bases de Datos de Phishing
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **PhishTank** | Collaborative database of verified phishing URLs | Free/API | [phishtank.com](https://www.phishtank.com/) |
+| **OpenPhish** | Real-time phishing URL feed, high quality | Commercial/API | [openphish.com](https://openphish.com/) |
+| **CheckPhish** | AI-based phishing detection with API access | Freemium/API | [checkphish.ai](https://checkphish.ai/) |
+| **MISP Project** | FOSS platform for correlating and sharing IOCs including phishing indicators | FOSS | [misp-project.org](https://www.misp-project.org/) |
+| **PhishStats** | Statistics and data on phishing campaigns | Free/API | [phishstats.info](https://phishstats.info/) |
 
-| Icon | Herramienta      | Descripción Clave                                                     | Modelo      | Link                                        |
-| :--: | :--------------- | :-------------------------------------------------------------------- | :---------- | :------------------------------------------ |
-| 🎣 | **PhishTank** | Base de datos colaborativa de sitios de phishing verificados.       | Gratuito/API| [phishtank.com](https://www.phishtank.com/)   |
-| 🐟 | **OpenPhish** | Feed de URLs de phishing en tiempo real. Alta calidad (Comercial).    | Comercial/API| [openphish.com](https://openphish.com/)     |
-| 🤖 | **CheckPhish** | Detección de phishing basada en IA, ofrece API.                     | Freemium/API| [checkphish.ai](https://checkphish.ai/)   |
-|  MISP | **MISP Project** | Plataforma FOSS para correlacionar y compartir IOCs (incl. phishing). | FOSS        | [misp-project.org](https://www.misp-project.org/) |
-| 📊 | **PhishStats** | Estadísticas y datos sobre campañas de phishing.                      | Gratuito/API| [phishstats.info](https://phishstats.info/) |
+### IP & Domain Reputation
 
-### Reputación de IP/Dominios
-
-| Icon | Herramienta      | Descripción Clave                                                    | Modelo      | Link                                                          |
-| :--: | :--------------- | :------------------------------------------------------------------- | :---------- | :------------------------------------------------------------ |
-| 🤬 | **AbuseIPDB** | Base de datos colaborativa de IPs asociadas a actividad maliciosa.     | Freemium/API| [abuseipdb.com](https://www.abuseipdb.com/)                   |
-| 🔍 | **VirusTotal** | Analiza IPs y Dominios contra múltiples motores y datasets.            | Freemium/API| [virustotal.com](https://www.virustotal.com/)                 |
-| 🛡️ | **Talos Reputation** | Centro de reputación de IP/Dominios de Cisco Talos.                | Gratuito    | [talosintelligence.com/reputation_center](https://talosintelligence.com/reputation_center) |
-| 🌐 | **URLVoid** | Escanea URLs y Dominios con múltiples servicios de reputación.         | Freemium/API| [urlvoid.com](https://www.urlvoid.com/)                       |
-| 🌀 | **ThreatConnect**| Plataforma de Threat Intelligence (incluye reputación).              | Comercial   | [threatconnect.com](https://threatconnect.com/)               |
-| 💡 | **IBM X-Force** | Portal de inteligencia de amenazas con reputación de IP/URL/Vulnerabilidades. | Freemium/API| [exchange.xforce.ibmcloud.com](https://exchange.xforce.ibmcloud.com/) |
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **AbuseIPDB** | Collaborative database of IPs associated with malicious activity | Freemium/API | [abuseipdb.com](https://www.abuseipdb.com/) |
+| **VirusTotal** | Checks IPs and domains against multiple engines and datasets | Freemium/API | [virustotal.com](https://www.virustotal.com/) |
+| **Cisco Talos Reputation** | IP/domain reputation lookup from Cisco Talos | Free | [talosintelligence.com](https://talosintelligence.com/reputation_center) |
+| **URLVoid** | Scans URLs and domains across multiple reputation services | Freemium/API | [urlvoid.com](https://www.urlvoid.com/) |
+| **IBM X-Force** | Threat intelligence portal with IP/URL/vulnerability reputation | Freemium/API | [exchange.xforce.ibmcloud.com](https://exchange.xforce.ibmcloud.com/) |
 
 ---
 
-## II. 🔬 Herramientas de Análisis Directo
+## Analysis Tools
 
-Herramientas prácticas para diseccionar artefactos de phishing.
+### URL & File Scanners
 
-### Escáneres Online de URL/Archivos
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **VirusTotal** | De facto standard for scanning URLs and files against multiple AV engines | Freemium/API | [virustotal.com](https://www.virustotal.com/) |
+| **URLScan.io** | Scans URLs and returns detailed info on page content and loaded resources | Freemium/API | [urlscan.io](https://urlscan.io/) |
+| **Any.Run** | Interactive online sandbox, good for quick URL/file triage | Freemium | [any.run](https://any.run/) |
+| **Hybrid Analysis** | Free malware analysis service combining sandbox and static analysis | Free | [hybrid-analysis.com](https://www.hybrid-analysis.com/) |
+| **ScanURL** | Independent web service for scanning URLs | Free | [scanurl.net](https://scanurl.net/) |
 
-| Icon | Herramienta        | Descripción Clave                                                              | Modelo      | Link                                            |
-| :--: | :----------------- | :----------------------------------------------------------------------------- | :---------- | :---------------------------------------------- |
-| 🌍 | **VirusTotal** | Estándar de facto para analizar URLs y archivos con múltiples motores AV.        | Freemium/API| [virustotal.com](https://www.virustotal.com/)   |
-| 🔗 | **URLScan.io** | Escanea URLs y proporciona información detallada sobre la página y recursos.   | Freemium/API| [urlscan.io](https://urlscan.io/)               |
-| 💨 | **Any.Run** | Sandbox interactivo online, excelente para análisis rápido de URLs/Archivos. | Freemium    | [any.run](https://any.run/)                     |
-| ✅ | **CheckPhish** | Escáner rápido basado en IA específico para detectar phishing.                 | Freemium/API| [checkphish.ai](https://checkphish.ai/)       |
-| 📄 | **Hybrid Analysis**| Servicio gratuito de análisis de malware (sandbox + estático).               | Gratuito    | [hybrid-analysis.com](https://www.hybrid-analysis.com/) |
-| ❓ | **IsItPhishing** | Plataforma de detección de phishing (puede requerir buscar URL actualizada).   | Variable    | (Buscar enlace)                                 |
-| 🔒 | **ScanURL** | Servicio web independiente para escanear URLs.                                 | Gratuito    | [scanurl.net](https://scanurl.net/)             |
+### Email Analysis (Headers, Content, Attachments)
 
-### Análisis de Email (Cabeceras, Contenido, Adjuntos)
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **MxToolbox Header Analyzer** | Straightforward online parser for email headers | Free | [mxtoolbox.com/EmailHeaders.aspx](https://mxtoolbox.com/EmailHeaders.aspx) |
+| **Google Messageheader** | Header analyzer from Google's G Suite Toolbox | Free | [toolbox.googleapps.com](https://toolbox.googleapps.com/apps/messageheader/) |
+| **PhishTool** | Integrated email analysis and IOC extraction | Commercial | [phishtool.com](https://phishtool.com/) |
+| **ThePhish** | FOSS automated EML analysis framework using TheHive/Cortex/MISP | FOSS | [GitHub](https://github.com/emalderson/ThePhish) |
 
-| Icon | Herramienta         | Descripción Clave                                                            | Modelo      | Link                                                                 |
-| :--: | :------------------ | :--------------------------------------------------------------------------- | :---------- | :------------------------------------------------------------------- |
-| 🧐 | **MxToolbox Headers**| Analizador online fácil de usar para cabeceras de email.                   | Gratuito    | [mxtoolbox.com/EmailHeaders.aspx](https://mxtoolbox.com/EmailHeaders.aspx) |
-| 🇬 | **Google Messageheader**| Analizador de cabeceras oficial de Google (parte de G Suite Toolbox).      | Gratuito    | [toolbox.googleapps.com/apps/messageheader/](https://toolbox.googleapps.com/apps/messageheader/) |
-| 🔧 | **PhishTool** | Software/Servicio para análisis integrado de emails, extracción de IOCs.   | Comercial   | [phishtool.com](https://phishtool.com/)                              |
-| 🤖 | **ThePhish** | Framework FOSS automatizado para analizar EMLs (usa TheHive/Cortex/MISP). | FOSS        | [GitHub](https://github.com/emalderson/ThePhish)                     |
-| 📎 | **Outlook/Thunderbird Add-ons** | Extensiones como "ImportExportTools NG" (TB) para manejar EMLs/MSGs.   | FOSS/Gratuito | (Buscar en tiendas de complementos)                                  |
-| ✓ | **Email Veritas** | Servicios para verificar remitentes y analizar emails.                      | Comercial   | (Buscar enlace)                                                      |
+### Sandboxes
 
-### Entornos Sandbox (Online y Auto-alojados)
-
-| Icon | Herramienta        | Descripción Clave                                                               | Modelo            | Link                                              |
-| :--: | :----------------- | :------------------------------------------------------------------------------ | :---------------- | :------------------------------------------------ |
-| ☁️ | **Any.Run** | Sandbox interactivo online, ideal para análisis rápidos y visuales.           | Freemium          | [any.run](https://any.run/)                       |
-| 🐧 | **Cuckoo Sandbox** | El estándar FOSS para análisis automatizado de malware (auto-alojado).      | FOSS              | [cuckoosandbox.org](https://cuckoosandbox.org/)     |
-| ☁️ | **Hybrid Analysis** | Sandbox online gratuito de CrowdStrike.                                       | Gratuito          | [hybrid-analysis.com](https://www.hybrid-analysis.com/) |
-| ☁️ | **Joe Sandbox Cloud**| Sandbox comercial avanzado con análisis muy detallados.                      | Comercial         | [joesandbox.com](https://www.joesandbox.com/)     |
-| 📦 | **Triage** | Plataforma de análisis de malware y sandbox (orientada a equipos).            | Comercial         | [tria.ge](https://tria.ge/)                       |
-| 🐳 | **Docker Sandboxes** | Contenedores Docker preconfigurados con herramientas de análisis (buscar en Docker Hub). | FOSS/Variable     | (Buscar en Docker Hub, ej. `remnux/`)           |
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **Any.Run** | Interactive cloud sandbox, good for visual triage | Freemium | [any.run](https://any.run/) |
+| **Cuckoo Sandbox** | Standard FOSS sandbox for automated malware analysis, self-hosted | FOSS | [cuckoosandbox.org](https://cuckoosandbox.org/) |
+| **Hybrid Analysis** | CrowdStrike's free online sandbox | Free | [hybrid-analysis.com](https://www.hybrid-analysis.com/) |
+| **Joe Sandbox Cloud** | Commercial sandbox with detailed behavioral analysis | Commercial | [joesandbox.com](https://www.joesandbox.com/) |
+| **Triage** | Malware analysis and sandbox platform | Commercial | [tria.ge](https://tria.ge/) |
 
 ---
 
-## III. 🛡️ Sistemas de Prevención y Detección
+## Prevention & Detection
 
-Soluciones a nivel de sistema o red para bloquear el phishing antes de que llegue al usuario.
+### Email Security Gateways
 
-### Gateways y Servicios de Seguridad de Email (Enfoque Comercial)
+Enterprise solutions, mostly commercial:
 
-> Estas son soluciones empresariales robustas, generalmente de pago.
+- **Proofpoint Email Protection** — advanced threat protection, widely deployed
+- **Mimecast Email Security** — cloud-based with sandboxing, URL/attachment protection, DMARC
+- **Barracuda Email Protection** — full suite including gateway, DMARC, and IR
+- **Microsoft Defender for Office 365** — integrated into M365
+- **Google Workspace Security** — integrated in Gmail/Workspace including sandbox
+- **Cofense** — focused on phishing reported by users, detection and response
+- **Avanan (Check Point)** — cloud-native API-based security for O365/Gmail
 
-* **Proofpoint Email Protection:** Líder del mercado en protección avanzada contra amenazas por email.
-* **Mimecast Email Security:** Seguridad Cloud con sandboxing, protección de URLs/adjuntos y DMARC.
-* **Barracuda Email Protection:** Suite completa (gateway, DMARC, respuesta a incidentes, formación).
-* **Microsoft Defender for Office 365:** Protección integrada en el ecosistema M365 (ATP).
-* **Google Workspace Security:** Protección integrada en Gmail/Workspace (incl. sandbox).
-* **Fortinet FortiMail:** Secure Email Gateway físico o virtual.
-* **Cofense:** Plataforma centrada en detección y respuesta a phishing reportado por usuarios.
-* **Avanan (Check Point):** Seguridad de email cloud-native vía API, buena para Office 365/Gmail.
-* **PhishTitan (TitanHQ):** Defensa anti-phishing basada en IA, integrada con SpamTitan.
-* **OPSWAT Email Security:** Enfocado en desarmado y reconstrucción de contenido (CDR).
+### Browser Protection
 
-### Protección Integrada en Navegador
-
-| Icon | Herramienta             | Descripción Clave                                                           | Modelo     | Notas                                               |
-| :--: | :---------------------- | :-------------------------------------------------------------------------- | :--------- | :-------------------------------------------------- |
-| 엣지 | **Microsoft SmartScreen** | Integrado en Edge y Windows, bloquea sitios/descargas maliciosos.             | Integrado  | Parte del sistema operativo y navegador Edge.      |
-| 🌐 | **Google Safe Browse** | Tecnología base en Chrome, Firefox, Safari para advertir de sitios peligrosos. | Integrado  | API disponible para desarrolladores.               |
-| 🛡️ | **Extensiones de Seguridad** | Antivirus (Avast, Bitdefender), Adblockers (uBlock Origin), Privacidad (Privacy Badger) y específicas (Netcraft) pueden bloquear URLs maliciosas. | Variable   | Revisar permisos y fiabilidad de las extensiones. |
+| Tool | Description | Model |
+|------|-------------|-------|
+| **Microsoft SmartScreen** | Built into Edge and Windows, blocks malicious sites and downloads | Built-in |
+| **Google Safe Browsing** | Underlying technology in Chrome, Firefox, and Safari | Built-in/API |
+| **Netcraft Extension** | Browser extension for phishing site detection | Free |
+| **uBlock Origin** | Blocks known malicious domains via filter lists | FOSS |
 
 ---
 
-## IV. 🎓 Simulación, Formación y Seguridad Ofensiva
+## Simulation & Awareness Training
 
-Herramientas para evaluar la preparación humana y realizar pruebas de penetración éticas.
+### Awareness Platforms
 
-### Plataformas de Simulación y Concienciación
+Commercial platforms for training end users:
 
-> Soluciones (mayormente comerciales) para entrenar a usuarios.
+- **KnowBe4** — phishing simulation and security awareness training
+- **Cofense PhishMe** — simulation with integrated user reporting
+- **Proofpoint Security Awareness Training** — training modules and simulation
+- **Microsoft Attack Simulation Training** — within Microsoft 365 Defender
+- **GoPhish** — FOSS framework usable for internal training (requires manual setup)
 
-* **KnowBe4:** Líder en formación de concienciación y simulación de phishing.
-* **Cofense PhishMe:** Plataforma de simulación y reporting integrado.
-* **Proofpoint Security Awareness Training:** Módulos de formación y simulación.
-* **Sophos Phish Threat:** Simulación integrada con la suite de Sophos.
-* **Microsoft Attack Simulation Training:** Dentro de Microsoft 365 Defender.
-* **Guardey:** Plataforma gamificada de formación en ciberseguridad.
-* **Hoxhunt:** Formación personalizada y automatizada.
-* **Infosec IQ / Skills:** Formación y simulación (parte de Cengage).
-* **SafeTitan (TitanHQ):** Formación en tiempo real integrada con protección.
-* **GoPhish:** Framework FOSS que puede usarse para formación interna (requiere configuración manual).
+### Phishing Simulation Frameworks
 
-### Frameworks para Campañas de Phishing Ético (¡Usar con responsabilidad!)
+> Intended for authorized penetration testing and internal simulations only.
 
-> **⚠️ Advertencia:** Estas herramientas son poderosas. Su uso debe ser **legal, ético y autorizado**.
-
-| Icon | Herramienta                  | Descripción Clave                                                               | Modelo      | Link                                                                  |
-| :--: | :--------------------------- | :------------------------------------------------------------------------------ | :---------- | :-------------------------------------------------------------------- |
-| 🎣 | **Gophish** | El estándar FOSS para crear y gestionar campañas de phishing simuladas.         | FOSS        | [getgophish.com](https://getgophish.com/)                             |
-| 🔧 | **SET (Social-Engineer Toolkit)** | Framework Python clásico para múltiples ataques de ingeniería social.       | FOSS        | [GitHub](https://github.com/trustedsec/social-engineer-toolkit)       |
-| 😈 | **Evilginx2 / 3** | Framework MITM avanzado para robar credenciales y tokens de sesión (bypass 2FA). | FOSS        | [GitHub (kgretzky)](https://github.com/kgretzky/evilginx2)            |
-| 👑 | **King Phisher** | Framework FOSS para campañas a gran escala, con buena gestión de servidor.     | FOSS        | [GitHub (rsmusllp)](https://github.com/rsmusllp/king-phisher)         |
-| 🐠 | **SocialFish / HiddenEye / etc.** | Varias herramientas FOSS (a menudo forks) con plantillas web y funciones MITM. | FOSS        | (Buscar activamente en GitHub, la popularidad y mantenimiento varían) |
-| 🔥 | **CredSniper** | Herramienta específica para crear páginas de login falsas y capturar credenciales. | FOSS        | [GitHub](https://github.com/ustayready/CredSniper)                    |
-| 📧 | **phishing-frenzy** | Framework Ruby on Rails para campañas de phishing (menos mantenido).          | FOSS        | [GitHub](https://github.com/pentestgeek/phishing-frenzy)              |
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **GoPhish** | FOSS standard for creating and managing phishing simulation campaigns | FOSS | [getgophish.com](https://getgophish.com/) |
+| **SET (Social-Engineer Toolkit)** | Classic Python framework for social engineering attacks | FOSS | [GitHub](https://github.com/trustedsec/social-engineer-toolkit) |
+| **Evilginx2/3** | Advanced MITM framework for capturing credentials and session tokens (2FA bypass) | FOSS | [GitHub](https://github.com/kgretzky/evilginx2) |
+| **King Phisher** | FOSS campaign framework with server management | FOSS | [GitHub](https://github.com/rsmusllp/king-phisher) |
+| **CredSniper** | Tool for building credential-harvesting login pages | FOSS | [GitHub](https://github.com/ustayready/CredSniper) |
 
 ---
 
-## V. 🛠️ Herramientas y Frameworks de Apoyo
+## Supporting Tools
 
-Utilidades que complementan el análisis o la simulación.
+### OSINT
 
-### Herramientas OSINT para Contexto de Phishing
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **Maltego** | Graph-based platform for relationship analysis and OSINT | Freemium/Commercial | [maltego.com](https://www.maltego.com/) |
+| **SpiderFoot** | OSINT automation tool, self-hosted or cloud | FOSS/Commercial | [spiderfoot.net](https://www.spiderfoot.net/) |
+| **theHarvester** | Collects emails, subdomains, and hosts from public sources | FOSS | [GitHub](https://github.com/laramies/theHarvester) |
+| **Recon-ng** | Modular OSINT framework in Python | FOSS | [GitHub](https://github.com/lanmaster53/recon-ng) |
 
-| Icon | Herramienta     | Descripción Clave                                                         | Modelo      | Link                                                 |
-| :--: | :-------------- | :------------------------------------------------------------------------ | :---------- | :--------------------------------------------------- |
-| 🔍 | **Maltego** | Potente plataforma gráfica para análisis de relaciones y OSINT.           | Freemium/Comercial | [maltego.com](https://www.maltego.com/)            |
-| 🕷️ | **SpiderFoot** | Herramienta de automatización OSINT (auto-alojada o cloud).             | FOSS/Comercial | [spiderfoot.net](https://www.spiderfoot.net/)        |
-| 🌐 | **theHarvester** | Recopila emails, subdominios, hosts, etc. desde fuentes públicas.       | FOSS        | [GitHub](https://github.com/laramies/theHarvester)   |
-| 👤 | **Sherlock** | Busca nombres de usuario en múltiples redes sociales.                     | FOSS        | [GitHub](https://github.com/sherlock-project/sherlock) |
-| 🗺️ | **Recon-ng** | Framework modular OSINT escrito en Python.                              | FOSS        | [GitHub](https://github.com/lanmaster53/recon-ng)    |
+### General Security Frameworks
 
-### Frameworks Generales de Seguridad
-
-| Icon | Herramienta        | Descripción Clave                                                                 | Modelo      | Link                                                      |
-| :--: | :----------------- | :-------------------------------------------------------------------------------- | :---------- | :-------------------------------------------------------- |
-| 💥 | **Metasploit Framework** | Plataforma #1 para desarrollo y ejecución de exploits (incluye módulos auxiliares útiles). | FOSS/Comercial | [metasploit.com](https://www.metasploit.com/)             |
-| 👁️ | **BeEF (Browser Exploitation Framework)** | Framework para controlar navegadores remotamente (útil para analizar kits de phishing). | FOSS        | [beefproject.com](https://beefproject.com/)               |
-| ⚡ | **Cobalt Strike** | Plataforma comercial para simulación de adversarios (Red Teaming).                  | Comercial   | [cobaltstrike.com](https://www.cobaltstrike.com/)         |
+| Tool | Description | Model | Link |
+|------|-------------|-------|------|
+| **Metasploit Framework** | Exploit development and execution platform | FOSS/Commercial | [metasploit.com](https://www.metasploit.com/) |
+| **BeEF** | Browser exploitation framework, useful for analyzing phishing kits | FOSS | [beefproject.com](https://beefproject.com/) |
 
 ---
 
-## VI. 📚 Aprendizaje y Recursos Adicionales
+## Learning Resources
 
-Para profundizar y mantenerse actualizado.
+### Workflow Examples
 
-### Ejemplos de Flujos de Trabajo (Ideas)
+**Quick URL triage:**
+`Suspicious URL → URLScan.io or VirusTotal → Review results and categorize`
 
-* **Análisis Rápido de URL Sospechosa:** `URL -> URLScan.io / VirusTotal -> Revisar resultados / Categorización.`
-* **Análisis de Email de Phishing:** `Obtener EML -> Analizar Cabeceras (MxToolbox) -> Extraer IOCs (URLs, IPs, Hashes) -> Verificar IOCs (VirusTotal, AbuseIPDB, PhishTank) -> Analizar Adjuntos/URLs en Sandbox (Any.Run, Hybrid Analysis).`
-* **Investigación de Campaña:** `Identificar Patrón (Asunto, Remitente, Kit Phishing) -> Usar IOCs para buscar en Threat Intel (MISP, PhishStats) -> Usar OSINT para investigar infraestructura (Maltego, Recon-ng).`
+**Phishing email analysis:**
+`Get EML → Parse headers (MxToolbox) → Extract IOCs (URLs, IPs, hashes) → Check IOCs (VirusTotal, AbuseIPDB, PhishTank) → Analyze attachments/URLs in sandbox (Any.Run, Hybrid Analysis)`
 
-### Lecturas Recomendadas y Artículos
+**Campaign investigation:**
+`Identify pattern (subject, sender, phishing kit) → Search threat intel (MISP, PhishStats) → OSINT on infrastructure (Maltego, Recon-ng)`
 
-* [APWG Phishing Activity Trends Reports](https://apwg.org/trendsreports/) - Informes trimestrales sobre tendencias de phishing.
-* [Blogs de Empresas de Seguridad](https://example.com/) - (Añadir enlaces a blogs relevantes: Proofpoint, Cofense, Akamai, Cisco Talos, Mandiant, etc.)
-* [Phishing.org](https://www.phishing.org/) - Información general sobre phishing.
-* [MITRE ATT&CK - Initial Access - Phishing (T1566)](https://attack.mitre.org/techniques/T1566/) - Descripción técnica de la táctica.
+### References
 
-### Listas "Awesome" Relacionadas
+- [APWG Phishing Activity Trends Reports](https://apwg.org/trendsreports/) — quarterly phishing trend data
+- [MITRE ATT&CK — Phishing (T1566)](https://attack.mitre.org/techniques/T1566/) — technical breakdown of the tactic
+- [Phishing.org](https://www.phishing.org/) — general phishing reference
 
-* [awesome-incident-response](https://github.com/meirwah/awesome-incident-response)
-* [awesome-threat-intelligence](https://github.com/hslatman/awesome-threat-intelligence)
-* [awesome-osint](https://github.com/jivoi/awesome-osint)
-* [awesome-security](https://github.com/sbilly/awesome-security)
-* [awesome-soc](https://github.com/cyb3rxp/awesome-soc)
+### Related Lists
 
----
-
-## VII. 🤝 Comunidad
-
-¡Este repositorio es para la comunidad!
-
-### Guía de Contribución
-
-Agradecemos enormemente las contribuciones. Para asegurar la calidad:
-
-1.  **Busca Duplicados:** Antes de añadir algo, asegúrate de que no exista ya.
-2.  **Relevancia:** Asegúrate de que la herramienta/recurso esté directamente relacionado con el análisis, detección o prevención de phishing.
-3.  **Información Completa:** Proporciona un enlace funcional, una descripción clara y concisa, y si es posible, el modelo (FOSS, Comercial, etc.).
-4.  **Formato:** Sigue el formato Markdown existente (tablas, iconos si procede).
-5.  **Crea un Pull Request:** Haz un fork, crea una rama descriptiva y envía un PR detallando tus cambios.
-
-> **Preferimos Calidad sobre Cantidad.** Herramientas bien mantenidas y reconocidas son prioritarias.
-
-### Código de Conducta
-
-Esperamos que todos los participantes sigan un código de conducta que fomente un ambiente abierto y respetuoso. (Puedes enlazar a uno estándar como el [Contributor Covenant](https://www.contributor-covenant.org/)).
-
-### Licencia
-
-Este trabajo se distribuye bajo la licencia [Creative Commons Zero v1.0 Universal](LICENSE) (CC0 1.0). Puedes copiar, modificar y distribuir la obra, incluso con fines comerciales, sin pedir permiso.
-
-[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+- [awesome-incident-response](https://github.com/meirwah/awesome-incident-response)
+- [awesome-threat-intelligence](https://github.com/hslatman/awesome-threat-intelligence)
+- [awesome-osint](https://github.com/jivoi/awesome-osint)
+- [awesome-soc](https://github.com/cyb3rxp/awesome-soc)
 
 ---
 
-*Una compilación de [Nervi0zz0](https://github.com/Nervi0zz0) para la comunidad de ciberseguridad.*
+## Contributing
+
+Before submitting, check that the tool isn't already listed and that it's directly relevant to phishing analysis, detection, or prevention. Provide a working link, a clear description, and the licensing model. Follow the table format used in existing sections.
+
+Quality over quantity — well-maintained and widely used tools are preferred.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process.
+
+---
+
+License: [CC0 1.0 Universal](LICENSE)
