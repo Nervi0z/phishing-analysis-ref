@@ -1,0 +1,260 @@
+<svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg" width="900" height="240">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020810"/>
+      <stop offset="100%" stop-color="#040c18"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="60%" stop-color="#9d50ed"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+    <linearGradient id="warnGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EAB308" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#EAB308" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="scanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#7C3AED" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="glow-title">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-soft">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-red">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="clip"><rect width="900" height="240"/></clipPath>
+  </defs>
+
+  <style>
+    .grid { stroke: #0b1829; stroke-width: 0.5; fill: none; }
+    .corner { stroke: #7C3AED; stroke-width: 1.5; fill: none; }
+    .c1 { stroke-dasharray: 22; stroke-dashoffset: 22; animation: dc .35s ease forwards .05s; }
+    .c2 { stroke-dasharray: 22; stroke-dashoffset: 22; animation: dc .35s ease forwards .15s; }
+    .c3 { stroke-dasharray: 22; stroke-dashoffset: 22; animation: dc .35s ease forwards .25s; }
+    .c4 { stroke-dasharray: 22; stroke-dashoffset: 22; animation: dc .35s ease forwards .35s; }
+    .topline { stroke-dasharray: 900; stroke-dashoffset: 900; animation: dl 1s ease forwards .4s; }
+    .scan { animation: scan 4.5s linear infinite 2s; }
+    .pt { animation: float 3.5s ease-in-out infinite; }
+    .p1{animation-delay:0s} .p2{animation-delay:.8s} .p3{animation-delay:1.6s}
+    .p4{animation-delay:2.4s} .p5{animation-delay:.4s} .p6{animation-delay:1.2s}
+
+    /* left panel - alert stream */
+    .al0{opacity:0;animation:pop .05s ease forwards .55s}
+    .al1{opacity:0;animation:pop .05s ease forwards .75s}
+    .al2{opacity:0;animation:pop .05s ease forwards .95s}
+    .al3{opacity:0;animation:pop .05s ease forwards 1.15s}
+    .al4{opacity:0;animation:pop .05s ease forwards 1.35s}
+    .al5{opacity:0;animation:pop .05s ease forwards 1.55s}
+
+    /* main title */
+    .title{font-family:'JetBrains Mono','Courier New',monospace;font-weight:700;font-size:34px;fill:url(#titleGrad);filter:url(#glow-title);opacity:0;animation:fi .6s ease forwards 1.7s}
+    .sub{font-family:'JetBrains Mono','Courier New',monospace;font-size:11.5px;fill:#94A3B8;opacity:0;animation:fi .5s ease forwards 1.95s}
+
+    /* tags */
+    .tag{opacity:0}
+    .tg1{animation:tp .3s ease forwards 2.2s}
+    .tg2{animation:tp .3s ease forwards 2.35s}
+    .tg3{animation:tp .3s ease forwards 2.5s}
+    .tg4{animation:tp .3s ease forwards 2.65s}
+    .tg5{animation:tp .3s ease forwards 2.8s}
+
+    /* right panel */
+    .rpanel{opacity:0;animation:fi .5s ease forwards 2.9s}
+    .rpulse{animation:rp 3s ease-in-out infinite 3.2s}
+
+    /* warning stripe */
+    .warnstripe{opacity:0;animation:fi .4s ease forwards 3.1s}
+
+    .cursor{animation:blink 1s step-end infinite 2.5s}
+
+    @keyframes dc  {to{stroke-dashoffset:0}}
+    @keyframes dl  {to{stroke-dashoffset:0}}
+    @keyframes pop {to{opacity:1}}
+    @keyframes fi  {to{opacity:1}}
+    @keyframes tp  {0%{opacity:0;transform:translateY(5px)}100%{opacity:1;transform:translateY(0)}}
+    @keyframes scan{0%{transform:translateY(-40px)}100%{transform:translateY(280px)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    @keyframes rp  {0%,100%{opacity:.7}50%{opacity:1}}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  </style>
+
+  <g clip-path="url(#clip)">
+    <rect width="900" height="240" fill="url(#bg)"/>
+
+    <!-- grid -->
+    <line class="grid" x1="0" y1="30"  x2="900" y2="30"/>
+    <line class="grid" x1="0" y1="60"  x2="900" y2="60"/>
+    <line class="grid" x1="0" y1="90"  x2="900" y2="90"/>
+    <line class="grid" x1="0" y1="120" x2="900" y2="120"/>
+    <line class="grid" x1="0" y1="150" x2="900" y2="150"/>
+    <line class="grid" x1="0" y1="180" x2="900" y2="180"/>
+    <line class="grid" x1="0" y1="210" x2="900" y2="210"/>
+    <line class="grid" x1="90"  y1="0" x2="90"  y2="240"/>
+    <line class="grid" x1="180" y1="0" x2="180" y2="240"/>
+    <line class="grid" x1="270" y1="0" x2="270" y2="240"/>
+    <line class="grid" x1="360" y1="0" x2="360" y2="240"/>
+    <line class="grid" x1="450" y1="0" x2="450" y2="240"/>
+    <line class="grid" x1="540" y1="0" x2="540" y2="240"/>
+    <line class="grid" x1="630" y1="0" x2="630" y2="240"/>
+    <line class="grid" x1="720" y1="0" x2="720" y2="240"/>
+    <line class="grid" x1="810" y1="0" x2="810" y2="240"/>
+
+    <!-- scan -->
+    <rect class="scan" x="0" y="0" width="900" height="40" fill="url(#scanGrad)"/>
+
+    <!-- top line -->
+    <line class="topline" x1="22" y1="9" x2="878" y2="9" stroke="url(#accentGrad)" stroke-width="1.5" fill="none"/>
+
+    <!-- corners -->
+    <path class="corner c1" d="M22 32 L22 20 L34 20"/>
+    <path class="corner c2" d="M878 32 L878 20 L866 20"/>
+    <path class="corner c3" d="M22 208 L22 220 L34 220"/>
+    <path class="corner c4" d="M878 208 L878 220 L866 220"/>
+
+    <!-- particles left -->
+    <circle class="pt p1" cx="12" cy="55"  r="1.5" fill="#7C3AED" opacity=".5"/>
+    <circle class="pt p2" cx="8"  cy="100" r="1"   fill="#06B6D4" opacity=".5"/>
+    <circle class="pt p3" cx="15" cy="145" r="1.5" fill="#7C3AED" opacity=".5"/>
+    <circle class="pt p4" cx="7"  cy="190" r="1"   fill="#06B6D4" opacity=".5"/>
+    <circle class="pt p5" cx="18" cy="78"  r="1"   fill="#06B6D4" opacity=".5"/>
+    <circle class="pt p6" cx="11" cy="168" r="1.5" fill="#7C3AED" opacity=".5"/>
+    <!-- particles right -->
+    <circle class="pt p2" cx="888" cy="50"  r="1.5" fill="#7C3AED" opacity=".5"/>
+    <circle class="pt p3" cx="892" cy="95"  r="1"   fill="#06B6D4" opacity=".5"/>
+    <circle class="pt p1" cx="885" cy="148" r="1.5" fill="#7C3AED" opacity=".5"/>
+    <circle class="pt p4" cx="893" cy="195" r="1"   fill="#06B6D4" opacity=".5"/>
+    <circle class="pt p6" cx="882" cy="72"  r="1"   fill="#06B6D4" opacity=".5"/>
+    <circle class="pt p5" cx="889" cy="172" r="1.5" fill="#7C3AED" opacity=".5"/>
+
+    <!-- LEFT: alert stream simulation -->
+    <!-- header -->
+    <text class="al0" font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#94A3B8" x="40" y="46">
+      <tspan fill="#7C3AED">$</tspan>
+      <tspan dx="4">phishing-analysis-ref</tspan>
+      <tspan fill="#06B6D4" dx="4">--live-feed</tspan>
+    </text>
+
+    <!-- alert line 1: PHISH detected -->
+    <text class="al1" font-family="'JetBrains Mono','Courier New',monospace" font-size="9.5px" x="40" y="63">
+      <tspan fill="#EF4444" filter="url(#glow-red)">[ALERT]</tspan>
+      <tspan fill="#94A3B8" dx="5">SPF=FAIL · DKIM=FAIL · sender spoofed</tspan>
+    </text>
+
+    <!-- alert line 2: URL scan -->
+    <text class="al2" font-family="'JetBrains Mono','Courier New',monospace" font-size="9.5px" x="40" y="79">
+      <tspan fill="#EAB308">[SCAN]</tspan>
+      <tspan fill="#94A3B8" dx="5">hxxps://secure-login[.]verify-account[.]tk</tspan>
+    </text>
+
+    <!-- alert line 3: VT result -->
+    <text class="al3" font-family="'JetBrains Mono','Courier New',monospace" font-size="9.5px" x="40" y="95">
+      <tspan fill="#22C55E">[VT]</tspan>
+      <tspan fill="#94A3B8" dx="5">detections: </tspan>
+      <tspan fill="#EF4444">47</tspan>
+      <tspan fill="#94A3B8">/73 · category: phishing</tspan>
+    </text>
+
+    <!-- alert line 4: sandbox -->
+    <text class="al4" font-family="'JetBrains Mono','Courier New',monospace" font-size="9.5px" x="40" y="111">
+      <tspan fill="#06B6D4">[SAND]</tspan>
+      <tspan fill="#94A3B8" dx="5">credential harvester · evilginx kit · 2FA bypass</tspan>
+    </text>
+
+    <!-- alert line 5: IOC extracted -->
+    <text class="al5" font-family="'JetBrains Mono','Courier New',monospace" font-size="9.5px" x="40" y="127">
+      <tspan fill="#7C3AED">[IOC]</tspan>
+      <tspan fill="#94A3B8" dx="5">C2: 185.220.xx.xx · kit hash: a3f9... · </tspan>
+      <tspan fill="#22C55E">blocked</tspan>
+    </text>
+
+    <!-- divider -->
+    <line x1="40" y1="136" x2="560" y2="136" stroke="#0d1f3a" stroke-width="1" opacity="0" style="animation: pop .1s ease forwards 1.6s"/>
+
+    <!-- main title -->
+    <text class="title" x="40" y="178">phishing-analysis-ref</text>
+
+    <!-- subtitle -->
+    <text class="sub" x="42" y="197">tools · feeds · sandboxes · workflows · IOC analysis · simulation</text>
+
+    <!-- tags -->
+    <g class="tag tg1">
+      <rect x="40" y="208" width="82" height="18" rx="3" fill="none" stroke="#EF4444" stroke-width="1"/>
+      <circle cx="51" cy="217" r="3" fill="#EF4444"/>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="10px" x="58" y="221" fill="#E6EDF3">Phishing</text>
+    </g>
+    <g class="tag tg2">
+      <rect x="130" y="208" width="62" height="18" rx="3" fill="none" stroke="#7C3AED" stroke-width="1"/>
+      <circle cx="141" cy="217" r="3" fill="#7C3AED"/>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="10px" x="148" y="221" fill="#E6EDF3">IOC</text>
+    </g>
+    <g class="tag tg3">
+      <rect x="200" y="208" width="72" height="18" rx="3" fill="none" stroke="#06B6D4" stroke-width="1"/>
+      <circle cx="211" cy="217" r="3" fill="#06B6D4"/>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="10px" x="218" y="221" fill="#E6EDF3">OSINT</text>
+    </g>
+    <g class="tag tg4">
+      <rect x="280" y="208" width="78" height="18" rx="3" fill="none" stroke="#EAB308" stroke-width="1"/>
+      <circle cx="291" cy="217" r="3" fill="#EAB308"/>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="10px" x="298" y="221" fill="#E6EDF3">Sandbox</text>
+    </g>
+    <g class="tag tg5">
+      <rect x="366" y="208" width="62" height="18" rx="3" fill="none" stroke="#22C55E" stroke-width="1"/>
+      <circle cx="377" cy="217" r="3" fill="#22C55E"/>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="10px" x="384" y="221" fill="#E6EDF3">CTI</text>
+    </g>
+
+    <!-- cursor -->
+    <rect class="cursor" x="42" y="225" width="7" height="11" fill="#7C3AED" opacity=".8"/>
+
+    <!-- RIGHT PANEL -->
+    <g class="rpanel rpulse">
+      <rect x="690" y="36" width="180" height="170" rx="4" fill="#060f1e" stroke="#EF4444" stroke-width="1" opacity=".8"/>
+      <!-- header -->
+      <rect x="690" y="36" width="180" height="22" rx="4" fill="#1a0808"/>
+      <rect x="690" y="48" width="180" height="10" fill="#1a0808"/>
+      <circle cx="705" cy="47" r="4" fill="#EF4444"/>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#E6EDF3" x="715" y="51">PHISH INTEL PANEL</text>
+
+      <line x1="700" y1="66" x2="858" y2="66" stroke="#1a1a2e" stroke-width="1"/>
+
+      <!-- stats -->
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#94A3B8" x="700" y="82">threat intel feeds</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#06B6D4" x="828" y="82">05</text>
+
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#94A3B8" x="700" y="98">url/file scanners</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#06B6D4" x="828" y="98">05</text>
+
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#94A3B8" x="700" y="114">sandbox platforms</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#06B6D4" x="828" y="114">05</text>
+
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#94A3B8" x="700" y="130">simulation tools</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#EAB308" x="828" y="130">05</text>
+
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#94A3B8" x="700" y="146">osint frameworks</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="9px" fill="#22C55E" x="828" y="146">04</text>
+
+      <line x1="700" y1="156" x2="858" y2="156" stroke="#1a1a2e" stroke-width="1"/>
+
+      <!-- SPF/DKIM/DMARC mini status -->
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="8px" fill="#94A3B8" x="700" y="170">email auth coverage</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="8px" fill="#EF4444" x="700" y="182">SPF</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="8px" fill="#EF4444" x="723" y="182">DKIM</text>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="8px" fill="#EF4444" x="752" y="182">DMARC</text>
+
+      <line x1="700" y1="190" x2="858" y2="190" stroke="#1a1a2e" stroke-width="1"/>
+      <text font-family="'JetBrains Mono','Courier New',monospace" font-size="8px" fill="#7C3AED" x="700" y="200">@Nervi0z · VAR Group</text>
+    </g>
+  </g>
+</svg>
